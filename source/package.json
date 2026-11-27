@@ -1,0 +1,9 @@
+{
+  "name": "watch-3d",
+  "private": true,
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": {
+    "esbuild": "^0.28.2",
+    "three": "^0.187.0"
+  }
+}

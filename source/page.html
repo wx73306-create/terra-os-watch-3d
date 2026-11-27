@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terra OS | 交互式 3D 手表</title>
+<style>
+:root{color-scheme:light;font-family:"Microsoft YaHei UI",system-ui,sans-serif;color:#171819;background:#fff;font-synthesis:none}
+*{box-sizing:border-box}
+body{margin:0}
+main{max-width:1500px;min-height:100svh;margin:auto;padding:clamp(18px,4vw,64px);display:grid;grid-template-columns:minmax(225px,300px) minmax(0,1fr);gap:clamp(16px,3vw,45px);align-items:center}
+h1{font-size:clamp(3.1rem,6vw,5.1rem);font-weight:650;margin:0;letter-spacing:-.09em;line-height:1}
+h1 span{color:#b43c15}
+h2{font-size:1.1rem;margin:1.15rem 0 0;font-weight:600}
+p{color:#515154;line-height:1.75;margin:.55rem 0 1.6rem;max-width:24ch}
+.control-group{display:flex;flex-wrap:wrap;gap:8px;margin-block:9px}
+button{appearance:none;background:#fff;color:#29292b;border:1px solid #c9c9cd;padding:9px 13px;border-radius:9px;font:inherit;font-size:.875rem;cursor:pointer;min-height:42px}
+button:hover,button[aria-pressed="true"]{border-color:#b43c15;background:#fff1ea}
+button:focus-visible{outline:2px solid #b43c15;outline-offset:2px}
+button:disabled{opacity:.42;cursor:default}
+#stage{cursor:grab;touch-action:none;height:clamp(530px,80svh,850px);position:relative;overflow:hidden;background:#fff}
+#stage canvas{position:absolute;inset:0;display:block;z-index:2;pointer-events:none}
+#stage:active{cursor:grabbing}
+#screen{display:block;visibility:hidden;position:absolute;left:0;top:0;width:480px;height:352px;border:none;transform-origin:0 0;z-index:1;background:#111;pointer-events:none}
+#screen.visible{visibility:visible;pointer-events:auto}
+#status{position:absolute;z-index:3;inset:0;display:grid;place-content:center;margin:0;max-width:none;padding:1.25rem;color:#515154;text-align:center;pointer-events:none}
+#status[hidden]{display:none}
+@media(max-width:740px){main{grid-template-columns:1fr;gap:16px;align-items:start}header{display:contents}h1,h2,p{grid-column:1}h2,p{margin:0}#stage{cursor:grab;touch-action:none;height:clamp(365px,66svh,675px);grid-row:4}.controls{grid-row:5}h1{font-size:3.15rem}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>TERRA<span> OS</span></h1>
+<h2>交互式 3D 手表</h2>
+<p>拖动表身旋转，滚轮或捏合缩放。轻触或滑动表屏使用 Terra OS。</p>
+<div class="controls">
+<div class="control-group" aria-label="3D 视角">
+<button id="home" disabled>回到正面</button>
+<button id="auto" aria-pressed="false" disabled>自动旋转</button>
+</div>
+<div class="control-group" aria-label="手表按键">
+<button id="previous" aria-label="向上转动表冠" disabled>表冠 ↑</button>
+<button id="next" aria-label="向下转动表冠" disabled>表冠 ↓</button>
+<button id="crown" disabled>按表冠</button>
+<button id="action" disabled>按侧键</button>
+</div>
+</div>
+</header>
+<section id="stage" aria-label="黑色手表 3D 模型">
+<iframe id="screen" title="可操作的 Terra OS 手表屏幕"></iframe>
+<p id="status" role="status">正在载入 3D 手表…</p>
+</section>
+</main>
+<script id="watch-ui" type="application/octet-stream">{{WATCH_UI}}</script>
+<script id="watch-model" type="application/octet-stream">{{WATCH_MODEL}}</script>
+<script>{{VIEWER}}</script>
+</body>
+</html>
